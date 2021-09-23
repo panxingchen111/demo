@@ -4,7 +4,12 @@
       <div slot="header" class="clearfix">
         <h3>登录</h3>
       </div>
-      <el-form :model="obj" :rules="rules" ref="obj">
+      <el-form
+        :model="obj"
+        :rules="rules"
+        ref="obj"
+        @keyup.enter.native="login"
+      >
         <el-form-item label="账号" prop="account">
           <el-input v-model="obj.account" clearable>
             <template slot="prepend">
@@ -39,10 +44,7 @@
           </el-col>
         </el-row>
       </el-form>
-      <el-button
-        size="small"
-        icon="el-icon-check"
-        @click="login"
+      <el-button size="small" icon="el-icon-check" @click="login" type="submit"
         >确 定</el-button
       >
       <el-button icon="el-icon-refresh" size="small" @click="reset"

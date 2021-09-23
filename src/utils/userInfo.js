@@ -3,6 +3,7 @@ const userInfo = {
     name: 1,
     id: 1,
     token: '111111111111',
+    avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
     menuList: [{
         name: "首页",
         path: "/",
@@ -49,6 +50,7 @@ const userInfo = {
     name: 2,
     id: 2,
     token: '2222222222',
+    avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
     menuList: [{
         name: "首页",
         path: "/",

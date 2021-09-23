@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <el-avatar icon="el-icon-user-solid"></el-avatar>
+    <el-avatar :src="$store.state.userInfo.avatar"></el-avatar>
     <el-dropdown>
       <span class="el-dropdown-link">
         <i class="el-icon-arrow-down el-icon--right"></i>
