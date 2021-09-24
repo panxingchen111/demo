@@ -25,7 +25,8 @@
  //    modules: {}
  //  })
  const state = {
-   userInfo: {}
+   userInfo: {}, //用户信息
+   permission: [], //按钮权限
  };
  export default new Vuex.Store({
    state,

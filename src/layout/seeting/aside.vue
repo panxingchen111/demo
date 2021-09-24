@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-menu router>
+    <el-menu router :unique-opened="true">
       <menu-tree :menuData="menuList"></menu-tree>
     </el-menu>
   </div>
@@ -35,4 +35,7 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.el-menu {
+  background: none !important;
+}
 </style>
