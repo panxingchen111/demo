@@ -44,6 +44,9 @@ const userInfo = {
           }
         ]
       },
+    ],
+    rights: [
+      'data-manage:list:add', 'data-manage:list:edit', 'data-manage:list:del',
     ]
   },
   2: {
@@ -91,6 +94,9 @@ const userInfo = {
           }
         ]
       },
+    ],
+    rights: [
+      'data-manage:list:del',
     ]
   },
 }

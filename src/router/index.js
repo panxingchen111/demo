@@ -51,7 +51,7 @@ const constantRoutes = [{
       },
       {
         path: 'imgInfo',
-        name: '资源管理-资源',
+        name: '资源管理-信息',
         component: () => import('@/views/data-manage/imgInfo'),
         meta: {
           needLogin: true

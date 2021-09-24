@@ -80,6 +80,8 @@ export default {
 }
 .tagList {
   text-align: left;
-  margin-top: 10px;
+  padding-top: 10px;
+  z-index: 999999999999;
+  background: white;
 }
 </style>

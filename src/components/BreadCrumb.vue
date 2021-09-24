@@ -69,6 +69,6 @@ export default {
   display: block;
   height: 1px;
   width: 100%;
-  margin: 10px 0;
+  margin: 5px 0;
 }
 </style>
