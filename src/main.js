@@ -13,6 +13,7 @@ import jsCookie from 'js-cookie'
 import Viewer from 'v-viewer'
 import 'viewerjs/dist/viewer.css'
 import dayjs from "dayjs"
+import checkRights from "./utils/checkRights";
 // 挂载到Vue实力上，全局可通过this.$store进行调用
 Vue.use(ElementUI);
 Vue.prototype.$FormValidate = FormValidate; //  2、注册成全局验证
@@ -20,6 +21,8 @@ Vue.config.productionTip = false
 Vue.prototype.$store = store
 Vue.prototype.$cookie = jsCookie;
 Vue.prototype.dayjs = dayjs; //可以全局使用dayjs
+Vue.prototype.$checkRights = checkRights;
+
 
 Vue.use(Viewer);
 Viewer.setDefaults({

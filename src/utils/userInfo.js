@@ -95,9 +95,7 @@ const userInfo = {
         ]
       },
     ],
-    rights: [
-      'data-manage:list:del',
-    ]
+    rights: []
   },
 }
 export {

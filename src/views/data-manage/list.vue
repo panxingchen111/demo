@@ -7,6 +7,7 @@
             size="small"
             type="primary"
             @click="add"
+            v-if="$checkRights(['data-manage:list:add'])"
             >新增</el-button
           >
         </el-col>
@@ -15,6 +16,7 @@
             size="small"
             type="danger"
             @click="del"
+            v-if="$checkRights(['data-manage:list:del'])"
             >删除</el-button
           >
         </el-col>
@@ -42,12 +44,10 @@
               type="text"
               size="small"
               @click="remove(scope.row)"
+              v-if="$checkRights(['data-manage:list:del'])"
               >删除</el-button
             >
-            <el-button
-              type="text"
-              size="small"
-              @click="edit(scope.row)"
+            <el-button type="text" size="small" @click="edit(scope.row)"
               >编辑</el-button
             >
           </template>
@@ -107,8 +107,7 @@ export default {
       multipleSelection: [],
     };
   },
-  created() {
-  },
+  created() {},
   methods: {
     add() {},
     del() {
