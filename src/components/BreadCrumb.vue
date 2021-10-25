@@ -17,18 +17,18 @@
 export default {
   data() {
     return {
-      breadCrumbList: [],
+      breadCrumbList: []
     };
   },
   watch: {
     $route: {
-      handler: function (newV, oldV) {
+      handler: function(newV, oldV) {
         // this.breadCrumbList.push(route);
         // console.log(88888, newV, oldV);
         this.getRouter();
       },
-      immediate: true,
-    },
+      immediate: true
+    }
   },
   created() {
     this.getRouter();
@@ -38,7 +38,7 @@ export default {
       const map = new Map();
       this.breadCrumbList.push(this.$route);
       this.breadCrumbList = this.breadCrumbList.filter(
-        (key) => !map.has(key.path) && map.set(key.path, 1)
+        key => !map.has(key.path) && map.set(key.path, 1)
       );
     },
     //点击tag
@@ -55,10 +55,15 @@ export default {
         return;
       } else {
         this.breadCrumbList.splice(index, 1);
-        this.$router.push(this.breadCrumbList[index - 1].path);
+        console.log(99999, this.breadCrumbList[index - 1].path);
+        let path = this.breadCrumbList[index - 1].path;
+        this.$router.push(path).catch(error => {});
+        // this.$router.push(this.breadCrumbList[index - 1].path).catch(error => {
+        //   console.log(error);
+        // });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

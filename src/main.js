@@ -22,8 +22,6 @@ Vue.prototype.$store = store
 Vue.prototype.$cookie = jsCookie;
 Vue.prototype.dayjs = dayjs; //可以全局使用dayjs
 Vue.prototype.$checkRights = checkRights;
-
-
 Vue.use(Viewer);
 Viewer.setDefaults({
   Options: {
