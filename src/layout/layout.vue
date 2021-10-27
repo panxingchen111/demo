@@ -1,13 +1,13 @@
 <template>
   <el-container>
     <el-aside
-      :width="value ? '200' + 'px' : '50' + 'px'"
+      :width="value ? '200' + 'px' : '60' + 'px'"
       style="position: relative"
     >
       <div style="right: 20px; position: absolute; top: 20px">
         <el-switch v-model="value"> </el-switch>
       </div>
-      <aside1 />
+      <aside1 :value="value" />
     </el-aside>
     <el-container>
       <el-header
@@ -32,10 +32,10 @@ export default {
   data() {
     return {
       value: true,
-      screenWidth: "100%",
+      screenWidth: "100%"
     };
   },
-  methods: {},
+  methods: {}
 };
 </script>
 <style lang="less" scoped>

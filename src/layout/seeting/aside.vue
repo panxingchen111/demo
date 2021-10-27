@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-menu router :unique-opened="true">
-      <menu-tree :menuData="menuList"></menu-tree>
+      <menu-tree :menuData="menuList" :value="value"></menu-tree>
     </el-menu>
   </div>
 </template>
@@ -9,14 +9,19 @@
 import MenuTree from "../../components/menuTree";
 export default {
   components: { MenuTree },
+  props: ["value"],
   data() {
     return {
-      menuList: [],
+      menuList: []
     };
   },
   mounted() {
     const menuList = this.$store.state.userInfo.menuList;
     this.getmenuListByshow(menuList);
+  },
+  watch: {
+    value(newVal, oldVal) {
+    }
   },
   methods: {
     getmenuListByshow(arr) {
@@ -30,8 +35,8 @@ export default {
         }
       });
       this.menuList = arr;
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

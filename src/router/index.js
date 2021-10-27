@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Layout from '@/layout/layout'
 import Cookies from 'js-cookie';
 import check from "../utils/checkRouter";
+import store from "../store/index";
 import {
   MessageBox
 } from "element-ui";
@@ -97,7 +98,8 @@ router.beforeEach(function (to, from, next) {
   if (to.meta.needLogin) {
     //从cookie中获取用户信息，判断是否已登录
     if (Cookies.get('userInfoToken')) {
-      let checkRouter = check(to.path, JSON.parse(sessionStorage.getItem("store")).userInfo.menuList)
+      let data = store.state.userInfo.menuList || JSON.parse(sessionStorage.getItem("store")).userInfo.menuList
+      let checkRouter = check(to.path, data)
       if (checkRouter) {
         console.log('------', )
         next(); //表示已经登录
