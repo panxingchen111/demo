@@ -5,7 +5,7 @@
   "author": "Panxingchen <xcpan@wicrenet.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "vue-cli-service serve --https true",
     "start": "npm run dev",
     "build": "node build/build.js"
   },
@@ -56,7 +56,8 @@
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "@vue/cli-service": "^4.3.1"
   },
   "engines": {
     "node": ">= 6.0.0",

@@ -1,6 +1,10 @@
 <template>
   <div>
-    <el-menu router :unique-opened="true">
+    <el-menu
+      router
+      :unique-opened="true"
+      :collapse="!value"
+    >
       <menu-tree :menuData="menuList" :value="value"></menu-tree>
     </el-menu>
   </div>
@@ -20,8 +24,7 @@ export default {
     this.getmenuListByshow(menuList);
   },
   watch: {
-    value(newVal, oldVal) {
-    }
+    value(newVal, oldVal) {}
   },
   methods: {
     getmenuListByshow(arr) {
