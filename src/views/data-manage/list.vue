@@ -2,21 +2,21 @@
   <div>
     <el-card>
       <el-row>
-        <el-col :span="2">
+        <el-col :span="4" style="text-align:left">
           <el-button
             size="small"
             type="primary"
             @click="add"
             v-if="$checkRights(['data-manage:list:add'])"
+            icon="el-icon-plus"
             >新增</el-button
           >
-        </el-col>
-        <el-col :span="2">
           <el-button
             size="small"
             type="danger"
             @click="del"
             v-if="$checkRights(['data-manage:list:del'])"
+            icon="el-icon-delete"
             >删除</el-button
           >
         </el-col>
@@ -65,46 +65,46 @@ export default {
           date: "2016-05-03",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1518 弄",
-          id: 1,
+          id: 1
         },
         {
           date: "2016-05-02",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1518 弄",
-          id: 2,
+          id: 2
         },
         {
           date: "2016-05-04",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1518 弄",
-          id: 3,
+          id: 3
         },
         {
           date: "2016-05-01",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1518 弄",
-          id: 4,
+          id: 4
         },
         {
           date: "2016-05-08",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1518 弄",
-          id: 5,
+          id: 5
         },
         {
           date: "2016-05-06",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1518 弄",
-          id: 6,
+          id: 6
         },
         {
           date: "2016-05-07",
           name: "王小虎",
           address: "上海市普陀区金沙江路 1518 弄",
-          id: 7,
-        },
+          id: 7
+        }
       ],
-      multipleSelection: [],
+      multipleSelection: []
     };
   },
   created() {},
@@ -114,11 +114,11 @@ export default {
       if (this.multipleSelection.length == 0) {
         this.$message({
           message: "至少选择一条数据",
-          type: "warning",
+          type: "warning"
         });
         return;
       } else {
-        let arr = this.multipleSelection.map((item) => item.id).join(",");
+        let arr = this.multipleSelection.map(item => item.id).join(",");
         console.log(arr);
       }
     },
@@ -126,9 +126,8 @@ export default {
       this.multipleSelection = val;
     },
     edit(row) {},
-    remove(row) {},
-  },
+    remove(row) {}
+  }
 };
 </script>
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

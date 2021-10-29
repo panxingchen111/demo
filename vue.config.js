@@ -16,7 +16,7 @@ console.log(`run env:${env}`);
 module.exports = {
     devServer: {
         host: "localhost",
-        port: 8080,
+        port: 8023,
         compress: true,
         https: false,
         open: true,

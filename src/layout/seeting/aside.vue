@@ -4,6 +4,7 @@
       router
       :unique-opened="true"
       :collapse="!value"
+      :default-active="defaultActive"
     >
       <menu-tree :menuData="menuList" :value="value"></menu-tree>
     </el-menu>
@@ -16,15 +17,20 @@ export default {
   props: ["value"],
   data() {
     return {
-      menuList: []
+      menuList: [],
+      defaultActive: ""
     };
   },
   mounted() {
     const menuList = this.$store.state.userInfo.menuList;
     this.getmenuListByshow(menuList);
+    this.defaultActive = this.$route.path;
   },
   watch: {
-    value(newVal, oldVal) {}
+    value(newVal, oldVal) {},
+    $route(newVal, oldVal) {
+      this.defaultActive = newVal.path;
+    }
   },
   methods: {
     getmenuListByshow(arr) {
