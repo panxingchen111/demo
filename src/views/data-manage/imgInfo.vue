@@ -3,7 +3,9 @@
     <viewer :images="imgList">
       <el-row :gutter="20">
         <el-col v-for="(item, index) in imgList" :key="index" :span="8">
-          <img :src="item.url" />
+          <el-card shadow="hover">
+            <img :src="item.url" />
+          </el-card>
         </el-col>
       </el-row>
     </viewer>

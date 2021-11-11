@@ -4,7 +4,7 @@
       :width="value ? '200' + 'px' : '60' + 'px'"
       style="position: relative"
     >
-      <div style="right: 20px; position: absolute; top: 20px">
+      <div style="right: 2px; position: absolute; top: 20px">
         <el-switch v-model="value"> </el-switch>
       </div>
       <aside1 :value="value" />
