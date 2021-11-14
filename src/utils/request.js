@@ -16,6 +16,7 @@ let loading; //定义loading变量
 function startLoading() { //使用Element loading-start 方法
   loading = Loading.service({
     lock: true,
+    target: 'main',
     text: '加载数据中……',
   })
 }
@@ -60,7 +61,7 @@ Axios.interceptors.request.use(
     config.headers['Authorization'] = token ? token : ''
     // }
     //显示等待框
-    // showFullScreenLoading()
+    showFullScreenLoading()
     return config
   },
   error => {
@@ -78,14 +79,12 @@ Axios.interceptors.response.use(
       return Promise.resolve(data)
     } else {
       console.log('22')
-
       return Promise.reject(data)
     }
   },
   error => {
     Message.error('网络连接错误，请稍后重试！')
-    // tryHideFullScreenLoading()
-
+    tryHideFullScreenLoading()
     // return Promise.reject(error)
 
   }

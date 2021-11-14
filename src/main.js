@@ -14,6 +14,7 @@ import Viewer from 'v-viewer'
 import 'viewerjs/dist/viewer.css'
 import dayjs from "dayjs"
 import checkRights from "./utils/checkRights";
+process.env.VUE_APP_MOCK === 'true' && require('./mock/index'); 
 // 挂载到Vue实力上，全局可通过this.$store进行调用
 Vue.use(ElementUI);
 Vue.prototype.$FormValidate = FormValidate; //  2、注册成全局验证

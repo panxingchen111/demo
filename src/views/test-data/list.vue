@@ -17,7 +17,7 @@ export default {
         id: 22222
       })
         .then(res => {
-          console.log(res);
+          console.log(111111111111,res);
         })
         .catch(e => {});
     }

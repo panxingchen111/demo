@@ -4,5 +4,5 @@ import {
 }
 from "../utils/request";
 export function getList(params) {
-  return get("/list", params)
+  return get("/api/test-data", params)
 }
