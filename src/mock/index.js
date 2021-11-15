@@ -6,4 +6,4 @@ Mock.setup({
   timeout: "200-2000"
 });
 //拦截的/home/getData
-Mock.mock(/\/api\/test-data/, "get", homeApi.getStaticData);
+Mock.mock(/\/api\/test-data/, "get", homeApi.getTestListData);

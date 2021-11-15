@@ -1,6 +1,6 @@
 import Mock from "mockjs";
 export default {
-  getStaticData: () => {
+  getTestListData: () => {
       console.log(7777777777)
     let list = [];
     for (let i = 0; i < 7; i++) {
@@ -17,7 +17,7 @@ export default {
     }
     console.log(1111111,list)
     return {
-      code: 20000, //选个20000来区别mock数据和正常数据
+      code: 200, //选个200来区别mock数据和正常数据
       data: {
         book: list
       }
