@@ -7,3 +7,5 @@ Mock.setup({
 });
 //拦截的/home/getData
 Mock.mock(/\/api\/test-data/, "get", homeApi.getTestListData);
+Mock.mock(/\/api\/test-chartsInfo/, "get", homeApi.getTestChartsInfo);
+

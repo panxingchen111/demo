@@ -7,10 +7,36 @@
 .card-top-input {
   width: 70%;
   margin-right: 10px;
+  /deep/ .el-input__inner {
+    height: 32.5px !important;
+  }
 }
-/deep/ .el-input__inner {
-  height: 32.5px !important;
-}
+
 /deep/ .el-pagination {
   text-align: end !important;
+}
+.card-group {
+  display: flex !important;
+  justify-content: space-between;
+}
+.card-group-item {
+  width: 24%;
+  .el-col-8 {
+    line-height: 5 !important;
+    border-right: 1px solid#f1f1f1;
+  }
+}
+
+.row-set {
+  display: flex;
+  align-items: center;
+}
+.col-right {
+  text-align: end;
+}
+.list-set {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 35px;
 }

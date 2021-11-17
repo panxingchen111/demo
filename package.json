@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "dayjs": "^1.10.7",
+    "echarts": "^5.2.2",
     "element-ui": "^2.15.6",
     "express": "^4.17.1",
     "js-cookie": "^3.0.1",
