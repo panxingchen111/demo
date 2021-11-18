@@ -107,7 +107,10 @@ export default {
       multipleSelection: []
     };
   },
-  created() {},
+  created() {
+    // let rights = this.$checkRights(['data-manage:list:del'])
+    // console.log(1111111111,rights)
+  },
   methods: {
     add() {},
     del() {

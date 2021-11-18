@@ -7,10 +7,6 @@ import store from "../store/index";
 import {
   MessageBox
 } from "element-ui";
-
-import {
-  name
-} from 'file-loader'
 Vue.use(Router)
 const constantRoutes = [{
     path: '/',
@@ -20,7 +16,8 @@ const constantRoutes = [{
       name: '首页',
       component: resolve => require(["@/views/home"], resolve),
       meta: {
-        needLogin: true
+        needLogin: true,
+        title: "Welcome"
       }
     }],
   },
@@ -47,7 +44,9 @@ const constantRoutes = [{
         name: '资源管理-列表',
         component: () => import('@/views/data-manage/list'),
         meta: {
-          needLogin: true
+          needLogin: true,
+          title: "List"
+
         }
       },
       {
@@ -55,7 +54,9 @@ const constantRoutes = [{
         name: '资源管理-信息',
         component: () => import('@/views/data-manage/imgInfo'),
         meta: {
-          needLogin: true
+          needLogin: true,
+          title: "imgInfo"
+
         }
       },
     ]
@@ -73,10 +74,11 @@ const constantRoutes = [{
       },
       {
         path: 'charts',
-        name: '资源管理-图表',
+        name: '测试数据-图表',
         component: () => import('@/views/test-data/charts'),
         meta: {
-          needLogin: true
+          needLogin: true,
+          title: 'charts'
         }
       },
     ]
@@ -95,6 +97,9 @@ const router = new Router({
   routes: constantRoutes
 });
 router.beforeEach(function (to, from, next) {
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
   if (to.meta.needLogin) {
     //从cookie中获取用户信息，判断是否已登录
     if (Cookies.get('userInfoToken')) {
