@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="login-bg">
     <el-card class="login-card">
       <div slot="header" class="clearfix">
-        <h3>登录</h3>
+        <h2 style="color:white">登录</h2>
       </div>
       <el-form
         :model="obj"
@@ -67,32 +67,36 @@ export default {
           {
             required: true,
             validator: this.$FormValidate.FormValidate.Form().validateCode,
-            trigger: "blur",
-          },
+            trigger: "blur"
+          }
         ],
         password: [
           {
             required: true,
             validator: this.$FormValidate.FormValidate.Form().validatePsdReg,
-            trigger: "blur",
-          },
+            trigger: "blur"
+          }
         ],
         imgCode: [
           {
             required: true,
             validator: this.$FormValidate.FormValidate.Form().imgCode,
-            trigger: "blur",
-          },
-        ],
+            trigger: "blur"
+          }
+        ]
       },
       identifyCode: "m6a8",
-      identifyCodes: "123456789abcdefghjkmnpqrstuvwxyz",
+      identifyCodes: "123456789abcdefghjkmnpqrstuvwxyz"
     };
   },
   mounted() {
     // 刷新页面就生成随机验证码
     this.identifyCode = "";
     this.makeCode(this.identifyCodes, 4);
+  },
+  beforeCreate() {
+    //把当前页的body样式去掉
+    document.querySelector("body").setAttribute("style", "margin:0");
   },
   methods: {
     // 点击验证码刷新验证码
@@ -120,7 +124,7 @@ export default {
     //登录
     login() {
       let loginid = "";
-      this.$refs["obj"].validate((valid) => {
+      this.$refs["obj"].validate(valid => {
         if (valid) {
           this.obj.password = md5(this.obj.password);
           if (this.obj.account == "admin1") {
@@ -131,10 +135,10 @@ export default {
           }
           userInfo[loginid].token =
             userInfo[loginid].token + new Date().valueOf();
-            console.log(888888888,new Date().valueOf())
+          console.log(888888888, new Date().valueOf());
           this.$cookie.set("userInfoToken", userInfo[loginid].token, {
             // expires: new Date(new Date().getTime() + 60 * 1000 * 1),//精确到分钟
-            expires: 1, //1天
+            expires: 1 //1天
           });
           this.$store.commit("setUserInfo", userInfo[loginid]);
           this.$router.replace("/");
@@ -143,13 +147,27 @@ export default {
           return false;
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>
 .login-card {
   width: 480px;
-  margin: auto;
+  position: absolute;
+  left: 33%;
+  top: 20%;
+  background-color: hsla(0, 0%, 100%, 0.2);
+}
+.el-card {
+  border: none !important;
+  border-radius: 4px !important;
+}
+.login-bg {
+  background: url("../assets/loginBg.jpeg") center center no-repeat;
+  width: 100%;
+  height: 100vh;
+  background-size: 100% 100%; /*随着原始比例缩放*/
+  position: relative;
 }
 </style>

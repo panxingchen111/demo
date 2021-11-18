@@ -39,4 +39,12 @@ export default {
 .el-submenu .el-menu-item {
   background-color: #d3dce6 !important;
 }
+/*隐藏文字*/
+.el-menu--collapse .el-submenu__title span {
+  display: none;
+}
+/*隐藏 > */
+.el-menu--collapse .el-submenu__title .el-submenu__icon-arrow {
+  display: none;
+}
 </style>

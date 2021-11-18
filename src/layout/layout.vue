@@ -75,8 +75,8 @@ export default {
   margin-left: 200px;
 }
 .noValue {
-  margin-left: 50px;
-  width: calc(100% - 50px);
+  margin-left: 60px;
+  width: calc(100% - 60px);
 }
 .tagList {
   text-align: left;

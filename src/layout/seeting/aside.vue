@@ -5,6 +5,7 @@
       :unique-opened="true"
       :collapse="!value"
       :default-active="defaultActive"
+      collapse-transition
     >
       <menu-tree :menuData="menuList" :value="value"></menu-tree>
     </el-menu>
