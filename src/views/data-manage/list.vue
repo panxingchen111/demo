@@ -29,6 +29,7 @@
         tooltip-effect="dark"
         style="width: 100%"
         @selection-change="handleSelectionChange"
+        row-key="id"
       >
         <el-table-column type="selection" width="55"> </el-table-column>
         <el-table-column label="日期" width="120">
@@ -57,7 +58,11 @@
   </div>
 </template>
 <script>
+import Sortable from "sortablejs";
 export default {
+  components: {
+    Sortable
+  },
   data() {
     return {
       tableData: [
@@ -111,7 +116,33 @@ export default {
     // let rights = this.$checkRights(['data-manage:list:del'])
     // console.log(1111111111,rights)
   },
+  mounted() {
+    this.setSort();
+  },
   methods: {
+    setSort() {
+      const el = this.$refs.multipleTable.$el.querySelectorAll(
+        ".el-table__body-wrapper > table > tbody"
+      )[0];
+      this.sortable = Sortable.create(el, {
+        ghostClass: "sortable-ghost", // Class name for the drop placeholder,
+        setData: function(dataTransfer) {
+          // to avoid Firefox bug
+          // Detail see : https://github.com/RubaXa/Sortable/issues/1012
+          dataTransfer.setData("Text", "");
+        },
+        onEnd: evt => {
+          const targetRow = this.tableData.splice(evt.oldIndex, 1)[0];
+          this.tableData.splice(evt.newIndex, 0, targetRow);
+
+          // for show the changes, you can delete in you code
+          const tempIndex = this.tableData.splice(evt.oldIndex, 1)[0];
+          this.tableData.splice(evt.newIndex, 0, tempIndex);
+          console.log(888888888, targetRow,evt.newIndex);
+          // evt.newIndex为拖拽后的顺序,targetRow是拖拽的那条数据,根据接口要求传参给后台
+        }
+      });
+    },
     add() {},
     del() {
       if (this.multipleSelection.length == 0) {

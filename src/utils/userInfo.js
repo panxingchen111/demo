@@ -46,7 +46,7 @@ const userInfo = {
       },
     ],
     rights: [
-      'data-manage:list:add', 'data-manage:list:edit', 'data-manage:list:del',
+      'test-data:list:del', 'data-manage:list:add', 'data-manage:list:edit', 'data-manage:list:del',
     ]
   },
   2: {

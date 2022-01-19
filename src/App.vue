@@ -42,4 +42,7 @@ export default {
   color: #2c3e50;
   /* margin-top: 60px; */
 }
+.viewer-container {
+  z-index: 999999 !important;
+}
 </style>
