@@ -84,6 +84,18 @@ const constantRoutes = [{
     ]
   },
   {
+    path: '/decoration',
+    component: Layout,
+    children: [{
+      path: 'index',
+      name: '页面装修',
+      component: () => import('@/views/decoration/index'),
+      meta: {
+        needLogin: true
+      }
+    }, ]
+  },
+  {
     path: '*',
     redirect: '/404'
   }

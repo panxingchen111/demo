@@ -11,6 +11,12 @@ const userInfo = {
         show: true
       },
       {
+        name: "页面装修",
+        path: "/decoration/index",
+        icon: "el-icon-brush",
+        show: true
+      },
+      {
         name: "测试数据",
         path: "",
         icon: "el-icon-s-data",

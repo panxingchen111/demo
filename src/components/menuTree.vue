@@ -35,7 +35,7 @@ export default {
   methods: {}
 };
 </script>
-<style lang="less" scoped>
+<style lang="less">
 .el-submenu .el-menu-item {
   background-color: #d3dce6 !important;
 }
@@ -44,6 +44,7 @@ export default {
   display: none;
 }
 /*隐藏 > */
+// 不能使用scoped,隐藏icon会不生效
 .el-menu--collapse .el-submenu__title .el-submenu__icon-arrow {
   display: none;
 }
