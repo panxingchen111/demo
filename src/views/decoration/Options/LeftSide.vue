@@ -4,7 +4,15 @@
       <p>{{ item.name }}</p>
       <div class="list">
         <div v-for="(data, id) in item.children" :key="id" class="list-data">
-          <draggable>
+          <draggable
+            :list="item.children"
+            @end="end($event, data)"
+            class="draggable1"
+            :options="{
+              group: { name: 'article', pull: 'clone', put: false },
+              sort: false
+            }"
+          >
             <el-card shadow="hover">
               <i :class="`${data.icon}`"></i>
               <div class="list-data-span">{{ data.name }}</div>
@@ -18,6 +26,7 @@
 <script>
 import { moduleList } from "../../../model/index";
 import draggable from "vuedraggable";
+import Bus from "./bus";
 export default {
   name: "LeftSide",
   components: {
@@ -30,6 +39,16 @@ export default {
   },
   created() {
     console.log(3333, moduleList);
+  },
+  methods: {
+    end(e, item) {
+      console.log("e", e);
+      if (e.to.className != "draggable2") {
+        return; //禁止其他区域触发事件
+      } else {
+        Bus.$emit("decorationInfo", item);
+      }
+    }
   }
 };
 </script>
@@ -44,10 +63,14 @@ p {
 .list-data {
   width: 50%;
   .list-data-span {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 .el-card {
   margin: 5px;
+  border: 0.5px solid #ebeef5 !important;
+}
+/deep/ .el-card__body {
+  padding: 10px !important;
 }
 </style>

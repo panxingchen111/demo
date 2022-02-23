@@ -1,7 +1,7 @@
 <template>
   <el-row :gutter="16">
-    <el-col :span="5"><LeftSide></LeftSide></el-col>
-    <el-col :span="15"><Center></Center></el-col>
+    <el-col :span="4"><LeftSide></LeftSide></el-col>
+    <el-col :span="16"><Center></Center></el-col>
     <el-col :span="4"><RightSide></RightSide></el-col>
   </el-row>
 </template>
@@ -17,4 +17,8 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.el-col {
+  border: 1px solid transparent;
+}
+</style>
