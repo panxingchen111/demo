@@ -7,9 +7,9 @@ const moduleList = [{
     }, {
       id: 'secondsKillGoods',
       name: '秒杀商品',
-      icon: 'el-icon-share'
+      icon: 'el-icon-warning-outline'
     }, {
-      id: 'text',
+      id: 'txt',
       name: '纯文本',
       icon: 'el-icon-edit-outline'
     }, ]

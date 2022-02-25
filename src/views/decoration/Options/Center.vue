@@ -10,23 +10,45 @@
           @click="show(item, index)"
           :class="index == activeIndex ? 'active' : ''"
         >
-          <p>{{ item.id }}-{{ item.name }}</p>
           <i
             class="el-icon-circle-close del"
-            @click.stop="del(item.index)"
+            @click.stop="del(item, index)"
             v-show="index == activeIndex"
           ></i>
+          <!-- 文本标签 -->
+          <Txt v-if="item.id == 'txt'"></Txt>
+          <!-- 文本标签 -->
+          <!-- 轮播图 -->
+          <Slideshow v-else-if="item.id == 'carousel'"></Slideshow>
+          <!-- 轮播图 -->
+          <!-- 秒杀商品组件 -->
+          <SecondsKillGoods
+            v-else-if="item.id == 'secondsKillGoods'"
+          ></SecondsKillGoods>
+          <!-- 秒杀商品组件 -->
+          <!-- 全部商品 -->
+          <AllGoods v-else-if="item.id == 'allGoods'"></AllGoods>
+          <!-- 全部商品 -->
+          <p v-else>{{ item.id }}-{{ item.name }}</p>
         </div>
       </div>
     </draggable>
   </div>
 </template>
 <script>
+import Txt from "../../../components/decorate/Txt";
+import Slideshow from "../../../components/decorate/Slideshow";
+import SecondsKillGoods from "../../../components/decorate/SecondsKillGoods";
+import AllGoods from "../../../components/decorate/AllGoods";
 import draggable from "vuedraggable";
 import Bus from "./bus";
 export default {
   components: {
-    draggable
+    draggable,
+    Txt,
+    Slideshow,
+    SecondsKillGoods,
+    AllGoods
   },
   name: "Center",
   data() {
@@ -48,7 +70,11 @@ export default {
     sort(item, index) {},
     show(item, i) {
       this.activeIndex = i;
-      console.log(i);
+      let info = {
+        params: item,
+        activeIndex: i
+      };
+      Bus.$emit("info", info);
     }
   }
 };
