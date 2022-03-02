@@ -3,10 +3,14 @@
     <div v-for="(item, index) in moduleList" :key="index">
       <p>{{ item.name }}</p>
       <div class="list">
-        <div v-for="(data, id) in item.children" :key="id" class="list-data">
+        <div
+          v-for="(data, index) in item.children"
+          :key="data.id"
+          class="list-data"
+        >
           <draggable
             :list="item.children"
-            @end="end($event, data)"
+            @end="end($event, data, index)"
             class="draggable1"
             :options="{
               group: { name: 'article', pull: 'clone', put: false },
@@ -34,19 +38,17 @@ export default {
   },
   data() {
     return {
-      moduleList: moduleList
+      moduleList: moduleList,
+      arr: []
     };
   },
-  created() {
-    console.log(3333, moduleList);
-  },
+  created() {},
   methods: {
-    end(e, item) {
-      console.log("e", e);
+    end(e, item, index) {
       if (e.to.className != "draggable2") {
         return; //禁止其他区域触发事件
       } else {
-        Bus.$emit("decorationInfo", item);
+        this.arr.push(item);
       }
     }
   }

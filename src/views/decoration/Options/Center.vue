@@ -16,7 +16,7 @@
             v-show="index == activeIndex"
           ></i>
           <!-- 文本标签 -->
-          <Txt v-if="item.id == 'txt'"></Txt>
+          <Txt v-if="item.id == 'txt'" :obj="item"></Txt>
           <!-- 文本标签 -->
           <!-- 轮播图 -->
           <Slideshow v-else-if="item.id == 'carousel'"></Slideshow>
@@ -29,6 +29,9 @@
           <!-- 全部商品 -->
           <AllGoods v-else-if="item.id == 'allGoods'"></AllGoods>
           <!-- 全部商品 -->
+          <!-- 推荐商品 -->
+          <RecommendGoods v-else-if="item.id == 'hotGoods'"></RecommendGoods>
+          <!-- 推荐商品 -->
           <p v-else>{{ item.id }}-{{ item.name }}</p>
         </div>
       </div>
@@ -40,6 +43,7 @@ import Txt from "../../../components/decorate/Txt";
 import Slideshow from "../../../components/decorate/Slideshow";
 import SecondsKillGoods from "../../../components/decorate/SecondsKillGoods";
 import AllGoods from "../../../components/decorate/AllGoods";
+import RecommendGoods from "../../../components/decorate/RecommendGoods.vue";
 import draggable from "vuedraggable";
 import Bus from "./bus";
 export default {
@@ -48,7 +52,8 @@ export default {
     Txt,
     Slideshow,
     SecondsKillGoods,
-    AllGoods
+    AllGoods,
+    RecommendGoods
   },
   name: "Center",
   data() {
@@ -58,23 +63,14 @@ export default {
     };
   },
   created() {
-    Bus.$on("decorationInfo", item => {
-      this.list.push(item);
-      console.log(99999999, this.list);
-    });
   },
   methods: {
     del(item, index) {
       this.list.splice(index, 1);
     },
     sort(item, index) {},
-    show(item, i) {
-      this.activeIndex = i;
-      let info = {
-        params: item,
-        activeIndex: i
-      };
-      Bus.$emit("info", info);
+    show(item, index) {
+      this.activeIndex = index;
     }
   }
 };
