@@ -127,5 +127,36 @@ export default {
         pageViewRanking: pageViewRanking
       }
     }
+  },
+  getImgList: (data) => {
+    return {
+      code: 200,
+      data: {
+        imgList: [{
+            url: 'https://img1.baidu.com/it/u=1376324071,162125697&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500',
+
+          },
+          {
+            url: 'https://img2.baidu.com/it/u=690487400,3736912659&fm=253&fmt=auto&app=120&f=JPEG?w=1200&h=675',
+          }, {
+            url: 'https://img1.baidu.com/it/u=1353414575,3717902620&fm=253&fmt=auto&app=120&f=JPEG?w=1200&h=675',
+
+          }, {
+            url: 'https://img1.baidu.com/it/u=722430420,1974228945&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500',
+
+          }, {
+            url: 'https://img1.baidu.com/it/u=3569420573,2690721824&fm=253&fmt=auto&app=120&f=JPEG?w=889&h=500',
+
+          }, {
+            url: 'https://img2.baidu.com/it/u=3710988509,630731277&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500',
+
+          }, {
+            url: 'https://img2.baidu.com/it/u=2326903703,1471706484&fm=253&fmt=auto&app=138&f=JPEG?w=890&h=500'
+
+          }
+
+        ]
+      }
+    }
   }
 };

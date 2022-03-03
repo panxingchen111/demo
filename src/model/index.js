@@ -5,10 +5,7 @@ const moduleList = [{
       name: '轮播图',
       icon: 'el-icon-picture-outline',
       options: {
-        imgList: [{
-          url: '',
-          jumpUrl: ''
-        }]
+        imgList: []
       }
     }, {
       id: 'secondsKillGoods',

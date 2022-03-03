@@ -1,13 +1,19 @@
 <template>
-  <el-carousel :interval="5000" arrow="always">
-    <el-carousel-item v-for="item in 4" :key="item">
-      <h3>{{ item }}</h3>
-    </el-carousel-item>
-  </el-carousel>
+  <div>
+    <el-carousel :interval="5000" arrow="always">
+      <el-carousel-item v-for="item in obj.options.imgList" :key="item.url">
+        <el-image
+          :src="item.url"
+          style="height: 100%;width: inherit;"
+        ></el-image>
+      </el-carousel-item>
+    </el-carousel>
+  </div>
 </template>
 <script>
 export default {
   name: "Slideshow",
+  props: ["obj"],
   data() {
     return {};
   }

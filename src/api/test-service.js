@@ -11,3 +11,7 @@ export function getList(params) {
 export function getChartsInfo(params) {
   return get("/api/test-chartsInfo", params)
 }
+//获取轮播图数据
+export function getImgList(params) {
+  return get("/api/imgList", params)
+}

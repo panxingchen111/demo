@@ -19,7 +19,7 @@
           <Txt v-if="item.id == 'txt'" :obj="item"></Txt>
           <!-- 文本标签 -->
           <!-- 轮播图 -->
-          <Slideshow v-else-if="item.id == 'carousel'"></Slideshow>
+          <Slideshow v-else-if="item.id == 'carousel'" :obj="item"></Slideshow>
           <!-- 轮播图 -->
           <!-- 秒杀商品组件 -->
           <SecondsKillGoods
@@ -73,8 +73,6 @@ export default {
   methods: {
     del(item, index) {
       this.list.splice(index, 1);
-      // Bus.$emit("edit", this.list[index + 1], index, this.list);
-      console.log(88888, this.list);
       this.show(this.list[index], index);
     },
     sort(item, index) {},
