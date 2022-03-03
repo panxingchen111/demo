@@ -81,9 +81,18 @@ export default {
     }
   },
   watch: {
+    obj: {
+      handler(newVal) {
+        if (newVal) {
+          this.curObj = newVal;
+        }
+      },
+      deep: true
+    },
     curObj: {
       handler(newVal) {
         if (newVal) {
+          this.curObj = newVal;
           this.callBack(newVal);
         }
       },

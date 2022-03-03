@@ -38,8 +38,7 @@ export default {
   },
   data() {
     return {
-      moduleList: moduleList,
-      arr: []
+      moduleList: moduleList
     };
   },
   created() {},
@@ -48,7 +47,7 @@ export default {
       if (e.to.className != "draggable2") {
         return; //禁止其他区域触发事件
       } else {
-        this.arr.push(item);
+        Bus.$emit("data", item);
       }
     }
   }

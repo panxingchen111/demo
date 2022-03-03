@@ -63,14 +63,24 @@ export default {
     };
   },
   created() {
+    Bus.$on("data", data => {
+      let obj = JSON.parse(JSON.stringify(data));
+      this.list.push(obj);
+      this.activeIndex = this.list.length - 1;
+      this.show(obj, this.activeIndex);
+    });
   },
   methods: {
     del(item, index) {
       this.list.splice(index, 1);
+      // Bus.$emit("edit", this.list[index + 1], index, this.list);
+      console.log(88888, this.list);
+      this.show(this.list[index], index);
     },
     sort(item, index) {},
     show(item, index) {
       this.activeIndex = index;
+      Bus.$emit("edit", item, index, this.list);
     }
   }
 };

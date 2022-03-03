@@ -19,9 +19,18 @@ export default {
       arr: []
     };
   },
-  created() {},
+  created() {
+    Bus.$on("edit", (data, index, list) => {
+      this.obj = data;
+      this.index = index;
+      this.arr = list;
+      console.log(999999,this.obj)
+    });
+  },
   methods: {
-    callBack(data) {}
+    callBack(data) {
+      console.log(888888, data, this.arr, this.index);
+    }
   }
 };
 </script>
