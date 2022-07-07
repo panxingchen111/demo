@@ -1,11 +1,17 @@
 <template>
   <div>
-    <p class="title">{{ title }}</p>
+    <p
+      class="title"
+      :style="{
+        'font-size': obj.options.fontSize,
+        color: obj.options.color,
+        'text-align': obj.options.textAlign
+      }"
+    >
+      {{ obj.options.titleName }}
+    </p>
     <el-row :gutter="20">
-      <el-col
-        v-for="(item, index) in 5"
-        :key="index"
-        :span="index == 0 ? 16 : 8"
+      <el-col v-for="(item, index) in 5" :key="index" :span="getLayout(index)"
         ><div class="grid-content bg-purple"></div>
       </el-col>
     </el-row>
@@ -14,10 +20,36 @@
 <script>
 export default {
   name: "RecommendGoods",
+  props: ["obj"],
   data() {
     return {
       title: "推荐商品"
     };
+  },
+  methods: {
+    getLayout(index) {
+      const val = this.obj.options.layout;
+      if (val === 1) {
+        if (index == 0) {
+          return 16;
+        } else {
+          return 8;
+        }
+      }
+      if (val == 2) {
+        if (index == 3) {
+          return 16;
+        } else {
+          return 8;
+        }
+      } else {
+        if (index == 0) {
+          return 24;
+        } else {
+          return 6;
+        }
+      }
+    }
   }
 };
 </script>
@@ -53,8 +85,6 @@ export default {
   background-color: #f9fafc;
 }
 .title {
-  text-align: left;
-  font-size: 12px;
   margin: 0;
   position: relative;
   margin-left: 5px;

@@ -32,7 +32,14 @@ const moduleList = [{
     }, {
       id: 'hotGoods',
       name: '推荐商品',
-      icon: 'el-icon-sell'
+      icon: 'el-icon-sell',
+      options: {
+        color: '#2c3e50',
+        fontSize: '12px',
+        textAlign: 'left',
+        titleName: '推荐商品',
+        layout: 1
+      }
     }, ]
   }
 
@@ -88,8 +95,21 @@ const alignList = [{
   label: '居中',
   value: 'center'
 }, ]
+const layoutList = [{
+    label: '2x3',
+    value: 1
+  }, {
+    label: '3x2',
+    value: 2
+  },
+  {
+    label: '1x4',
+    value: 3
+  }
+]
 export {
   moduleList,
   selectFontList,
-  alignList
+  alignList,
+  layoutList
 }

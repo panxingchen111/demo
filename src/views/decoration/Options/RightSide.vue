@@ -1,15 +1,26 @@
 <template>
   <div>
     <!-- 文本设置 -->
-    <TxtSet :obj="obj" v-if="obj.id == 'txt'" :callBack="callBack"></TxtSet>
+    <TxtSet
+      :obj="obj"
+      v-if="obj && obj.id == 'txt'"
+      :callBack="callBack"
+    ></TxtSet>
     <!-- 文本设置 -->
     <!-- 轮播图设置 -->
     <SlideshowSet
       :obj="obj"
-      v-else-if="obj.id == 'carousel'"
+      v-else-if="obj && obj.id == 'carousel'"
       :callBack="callBack"
     ></SlideshowSet>
     <!-- 轮播图设置 -->
+    <!-- 推荐商品 -->
+    <RecommendGoodsSet
+      :obj="obj"
+      v-else-if="obj && obj.id == 'hotGoods'"
+      :callBack="callBack"
+    ></RecommendGoodsSet>
+    <!-- 推荐商品 -->
   </div>
 </template>
 
@@ -17,8 +28,9 @@
 import Bus from "./bus";
 import TxtSet from "../../../components/decorate-set/TxtSet.vue";
 import SlideshowSet from "../../../components/decorate-set/SlideshowSet.vue";
+import RecommendGoodsSet from "../../../components/decorate-set/RecommendGoodsSet.vue";
 export default {
-  components: { TxtSet, SlideshowSet },
+  components: { TxtSet, SlideshowSet, RecommendGoodsSet },
   name: "RightSide",
   data() {
     return {

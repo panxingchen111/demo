@@ -30,7 +30,10 @@
           <AllGoods v-else-if="item.id == 'allGoods'"></AllGoods>
           <!-- 全部商品 -->
           <!-- 推荐商品 -->
-          <RecommendGoods v-else-if="item.id == 'hotGoods'"></RecommendGoods>
+          <RecommendGoods
+            v-else-if="item.id == 'hotGoods'"
+            :obj="item"
+          ></RecommendGoods>
           <!-- 推荐商品 -->
           <p v-else>{{ item.id }}-{{ item.name }}</p>
         </div>

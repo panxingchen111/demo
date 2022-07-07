@@ -96,15 +96,30 @@ export default {
       this.flag = false;
     },
     saveData(data) {
-      this.curObj.options.imgList = data;
+      this.curObj.options.imgList = this.curObj.options.imgList.concat(data);
     },
     del(item, index) {
-      this.curObj.options.imgList.splice(item, 1);
+      let i = this.curObj.options.imgList.indexOf(item);
+      this.curObj.options.imgList.splice(i, 1);
     },
     sort(item, index, type) {
       //type =1是降序2是升序
       if (type == 1) {
+        let temp = this.curObj.options.imgList[index - 1];
+        this.$set(
+          this.curObj.options.imgList,
+          index - 1,
+          this.curObj.options.imgList[index]
+        );
+        this.$set(this.curObj.options.imgList, index, temp);
       } else {
+        let temp = this.curObj.options.imgList[index + 1];
+        this.$set(
+          this.curObj.options.imgList,
+          index + 1,
+          this.curObj.options.imgList[index]
+        );
+        this.$set(this.curObj.options.imgList, index, temp);
       }
     }
   }
