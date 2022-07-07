@@ -152,9 +152,16 @@ export default {
 
           }, {
             url: 'https://img2.baidu.com/it/u=2326903703,1471706484&fm=253&fmt=auto&app=138&f=JPEG?w=890&h=500'
-
+          },
+          {
+            url: 'https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg'
+          },
+          {
+            url: 'https://img2.baidu.com/it/u=1088287531,1393326254&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500'
+          },
+          {
+            url: 'https://img2.baidu.com/it/u=3328039940,1634058035&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800'
           }
-
         ]
       }
     }

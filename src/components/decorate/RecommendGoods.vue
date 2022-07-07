@@ -10,23 +10,41 @@
     >
       {{ obj.options.titleName }}
     </p>
-    <el-row :gutter="20">
-      <el-col v-for="(item, index) in 5" :key="index" :span="getLayout(index)"
-        ><div class="grid-content bg-purple"></div>
+    <el-row :gutter="10">
+      <el-col
+        v-for="(item, index) in imgList.slice(0, 5)"
+        :key="index"
+        :span="getLayout(index)"
+        ><div class="images">
+          <el-image :src="item.url"></el-image>
+        </div>
       </el-col>
     </el-row>
   </div>
 </template>
 <script>
+import { getImgList } from "../../api/test-service";
+
 export default {
   name: "RecommendGoods",
   props: ["obj"],
   data() {
     return {
-      title: "推荐商品"
+      imgList: []
     };
   },
+  created() {
+    this.load();
+  },
   methods: {
+    load() {
+      let obj = {
+        time: new Date().getTime()
+      };
+      getImgList(obj).then(res => {
+        this.imgList = res.data.imgList;
+      });
+    },
     getLayout(index) {
       const val = this.obj.options.layout;
       if (val === 1) {
@@ -99,6 +117,18 @@ export default {
   }
   &:hover::before {
     background-color: #409eff;
+  }
+}
+.images {
+  overflow: hidden;
+}
+.el-image {
+  width: 100%;
+  height: 200px;
+  transition: all 0.6s;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.3);
   }
 }
 </style>
