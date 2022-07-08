@@ -38,6 +38,9 @@
           <p v-else>{{ item.id }}-{{ item.name }}</p>
         </div>
       </div>
+      <h3 v-if="list.length == 0" style="padding-top:10px">
+        可将左侧控件拖入当前位置，实现装修功能。
+      </h3>
     </draggable>
   </div>
 </template>

@@ -70,6 +70,7 @@ p {
 .el-card {
   margin: 5px;
   border: 0.5px solid #ebeef5 !important;
+  cursor: pointer;
 }
 /deep/ .el-card__body {
   padding: 10px !important;

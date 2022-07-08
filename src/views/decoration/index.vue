@@ -1,9 +1,11 @@
 <template>
-  <el-row :gutter="16">
-    <el-col :span="4"><LeftSide></LeftSide></el-col>
-    <el-col :span="16"><Center></Center></el-col>
-    <el-col :span="4"><RightSide></RightSide></el-col>
-  </el-row>
+  <diV>
+    <el-row :gutter="10">
+      <el-col :span="4"><LeftSide></LeftSide></el-col>
+      <el-col :span="16"><Center></Center></el-col>
+      <el-col :span="4"><RightSide></RightSide></el-col>
+    </el-row>
+  </diV>
 </template>
 <script>
 import LeftSide from "./Options/LeftSide";

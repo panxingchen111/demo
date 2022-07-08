@@ -37,11 +37,10 @@ export default {
 .el-row {
   margin-left: 0 !important;
   margin-right: 0 !important;
-  background: white !important;
-  padding: 10px;
+  padding: 5px;
 }
 .goods-image {
-  background: #f2f2f2;
+  background: white;
   height: 140px;
   display: flex;
   align-items: center;
@@ -55,6 +54,7 @@ export default {
   font-size: 14px;
   height: 30px;
   line-height: 30px;
+  background: white !important;
 }
 .image-amount {
   width: 60%;
@@ -64,6 +64,7 @@ export default {
   height: 20px;
   line-height: 20px;
   color: red;
+  background: white !important;
 }
 .goods-icon {
   font-size: 50px;
