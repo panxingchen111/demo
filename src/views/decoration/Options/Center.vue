@@ -91,10 +91,10 @@ export default {
 </script>
 <style lang="less" scoped>
 .page {
-  width: 100%;
-  min-height: 620px;
-  height: 100%;
   background: #f2f2f2;
+  min-height: 78vh;
+  margin-right: 15px;
+  border-radius: 6px;
 }
 .draggable2 {
   height: 100%;
@@ -107,11 +107,12 @@ export default {
 }
 .active {
   border: dashed #409eff;
+  position: relative;
 }
 .del {
   color: #409eff;
   position: absolute;
   right: -15px;
-  top: 20px;
+  top: 50%;
 }
 </style>

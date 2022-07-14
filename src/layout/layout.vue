@@ -4,8 +4,8 @@
       :width="value ? '200' + 'px' : '60' + 'px'"
       style="position: relative"
     >
-      <div style="right: 2px; position: absolute; top: 20px">
-        <el-switch v-model="value"> </el-switch>
+      <div style="left: 25px; position: absolute; top: 20px">
+        <el-switch v-model="value" :width="35"> </el-switch>
       </div>
       <aside1 :value="value" />
     </el-aside>

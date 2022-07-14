@@ -1,7 +1,10 @@
 <template>
   <div>
     <el-carousel :interval="5000" arrow="always">
-      <el-carousel-item v-for="item in obj.options.imgList" :key="item.url">
+      <el-carousel-item
+        v-for="(item, index) in obj.options.imgList"
+        :key="index + Date.now()"
+      >
         <el-image
           :src="item.url"
           style="height: 100%;width: inherit;"
@@ -16,6 +19,17 @@ export default {
   props: ["obj"],
   data() {
     return {};
+  },
+  watch: {
+    obj: {
+      handler(val) {
+        if (val) {
+          this.$forceUpdate();
+        }
+      },
+      immediate: true,
+      deep: true
+    }
   }
 };
 </script>

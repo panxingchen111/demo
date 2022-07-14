@@ -121,10 +121,11 @@ export default {
 }
 .images {
   overflow: hidden;
+  height: 200px;
 }
 .el-image {
   width: 100%;
-  height: 200px;
+  height: 100%;
   transition: all 0.6s;
   cursor: pointer;
   &:hover {
