@@ -10,9 +10,8 @@ export default {
   data() {
     return {};
   },
-  created() {
-  },
-  methods: {},
+  created() {},
+  methods: {}
 };
 </script>
 <style lang="less" scoped>

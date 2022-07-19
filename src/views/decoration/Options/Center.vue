@@ -69,14 +69,17 @@ export default {
     };
   },
   created() {
-    Bus.$on("data", data => {
-      let obj = JSON.parse(JSON.stringify(data));
-      this.list.push(obj);
-      this.activeIndex = this.list.length - 1;
-      this.show(obj, this.activeIndex);
-    });
+    this.load();
   },
   methods: {
+    load() {
+      Bus.$on("data", data => {
+        let obj = JSON.parse(JSON.stringify(data));
+        this.list.push(obj);
+        this.activeIndex = this.list.length - 1;
+        this.show(obj, this.activeIndex);
+      });
+    },
     del(item, index) {
       this.list.splice(index, 1);
       this.show(this.list[index], index);

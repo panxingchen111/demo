@@ -1,22 +1,27 @@
 <template>
   <div class="header">
-    <h3>{{ env.VUE_APP_TITLE }}</h3>
-    <div>
-      <el-avatar
-        :src="$store.state.userInfo.avatar"
-        style="margin-top:10px"
-      ></el-avatar>
-      <el-dropdown>
-        <span class="el-dropdown-link">
-          <i class="el-icon-arrow-down el-icon--right"></i>
-        </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="logoOut">注销</el-dropdown-item>
-          <el-dropdown-item @click.native="forgetPwd"
-            >忘记密码</el-dropdown-item
-          >
-        </el-dropdown-menu>
-      </el-dropdown>
+    <div
+      style="display: inline-flex;
+    justify-content: end;"
+    >
+      <h3 style="margin-right:10px">{{ env.VUE_APP_TITLE }}</h3>
+      <div>
+        <el-avatar
+          :src="$store.state.userInfo.avatar"
+          style="margin-top:10px"
+        ></el-avatar>
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            <i class="el-icon-arrow-down el-icon--right"></i>
+          </span>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item @click.native="logoOut">注销</el-dropdown-item>
+            <el-dropdown-item @click.native="forgetPwd"
+              >忘记密码</el-dropdown-item
+            >
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     </div>
   </div>
 </template>
@@ -54,8 +59,6 @@ export default {
 .header {
   text-align: right;
   padding-right: 50px;
-  display: flex;
-  justify-content: space-around;
 }
 .el-dropdown {
   position: relative;
