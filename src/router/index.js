@@ -46,7 +46,6 @@ const constantRoutes = [{
         meta: {
           needLogin: true,
           title: "List"
-
         }
       },
       {

@@ -11,7 +11,7 @@
     </el-aside>
     <el-container>
       <el-header
-        ><header1 />
+        ><header1/>
         <bread-crumb
           :class="value ? 'isValue' : 'noValue'"
           class="tagList"

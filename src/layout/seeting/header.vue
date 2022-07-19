@@ -1,21 +1,31 @@
 <template>
   <div class="header">
-    <el-avatar :src="$store.state.userInfo.avatar"></el-avatar>
-    <el-dropdown>
-      <span class="el-dropdown-link">
-        <i class="el-icon-arrow-down el-icon--right"></i>
-      </span>
-      <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item @click.native="logoOut">注销</el-dropdown-item>
-        <el-dropdown-item @click.native="forgetPwd">忘记密码</el-dropdown-item>
-      </el-dropdown-menu>
-    </el-dropdown>
+    <h3>{{ env.VUE_APP_TITLE }}</h3>
+    <div>
+      <el-avatar
+        :src="$store.state.userInfo.avatar"
+        style="margin-top:10px"
+      ></el-avatar>
+      <el-dropdown>
+        <span class="el-dropdown-link">
+          <i class="el-icon-arrow-down el-icon--right"></i>
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item @click.native="logoOut">注销</el-dropdown-item>
+          <el-dropdown-item @click.native="forgetPwd"
+            >忘记密码</el-dropdown-item
+          >
+        </el-dropdown-menu>
+      </el-dropdown>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      env: process.env
+    };
   },
   methods: {
     logoOut() {
@@ -44,14 +54,15 @@ export default {
 .header {
   text-align: right;
   padding-right: 50px;
-  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
 }
 .el-dropdown {
   position: relative;
   color: #606266;
   font-size: 14px;
   float: right;
-  margin-top: 15px;
+  margin-top: 25px;
   display: block;
 }
 </style>
