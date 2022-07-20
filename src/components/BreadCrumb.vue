@@ -52,15 +52,16 @@ export default {
     //关闭
     closeTag(tag, index) {
       if (this.breadCrumbList.length == 1) {
+        this.$message({
+          message: "至少保留一个页面！",
+          type: "warning"
+        });
         return;
       } else {
         this.breadCrumbList.splice(index, 1);
-        console.log(99999, this.breadCrumbList[index - 1].path);
-        let path = this.breadCrumbList[index - 1].path;
+        let len = this.breadCrumbList.length;
+        let path = this.breadCrumbList[len-1].path;
         this.$router.push(path).catch(error => {});
-        // this.$router.push(this.breadCrumbList[index - 1].path).catch(error => {
-        //   console.log(error);
-        // });
       }
     }
   }
