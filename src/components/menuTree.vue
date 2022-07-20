@@ -48,4 +48,25 @@ export default {
 .el-menu--collapse .el-submenu__title .el-submenu__icon-arrow {
   display: none;
 }
+.el-menu-item:hover {
+  outline: 0;
+  background-color: #ecf5ff !important;
+}
+.el-menu-item.is-active {
+  outline: 0;
+  background-color: #ecf5ff !important;
+  // &:after {
+  //   content: "";
+  //   position: absolute;
+  //   top: 50%;
+  //   right: 0;
+  //   display: block;
+  //   width: 0;
+  //   height: 0;
+  //   margin-top: -15px;
+  //   border-color: transparent transparent transparent transparent;
+  //   border-style: solid;
+  //   border-width: 6px;
+  // }
+}
 </style>
