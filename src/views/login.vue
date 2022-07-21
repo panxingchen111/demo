@@ -141,6 +141,7 @@ export default {
             expires: 1 //1天
           });
           this.$store.commit("setUserInfo", userInfo[loginid]);
+          this.$store.commit("setTime", new Date());
           this.$router.replace("/");
         } else {
           console.log("error submit!!");

@@ -5,6 +5,7 @@ const actions = {
     commit
   }) {
     commit("setUserInfo", null);
+    commit("setTime", null)
   },
 };
 export default actions;

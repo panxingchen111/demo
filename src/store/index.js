@@ -3,10 +3,12 @@
  import Vuex from 'vuex'
  // 挂载vuex
  Vue.use(Vuex)
- import * as getters from './getters';
+//  import * as getters from './getters';
  //  import * as mutations from './mutations';
  import actions from './actions';
  import mutations from './mutations';
+ import getters from './getters';
+
  // 创建vuex对象并向外暴露
  //  export default new Vuex.Store({
  //    // 全局属性变量
@@ -26,7 +28,8 @@
  //  })
  const state = {
    userInfo: {}, //用户信息
-  //  permission: [], //按钮权限
+   loginTime: '', //登录时间
+   //  permission: [], //按钮权限
  };
  export default new Vuex.Store({
    state,
