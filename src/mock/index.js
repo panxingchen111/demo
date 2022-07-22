@@ -10,3 +10,5 @@ Mock.mock(/\/api\/test-data/, "get", Api.getTestListData);
 Mock.mock(/\/api\/test-chartsInfo/, "get", Api.getTestChartsInfo);
 Mock.mock(/\/api\/imgList/, "get", Api.getImgList);
 Mock.mock(/\/api\/backLogList/, "get", Api.getBackLogList);
+Mock.mock(/\/api\/resList/, "get", Api.getResList);
+Mock.mock(/\/api\/resImgList/, "get", Api.getResImgList);

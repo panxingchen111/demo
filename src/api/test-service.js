@@ -19,3 +19,11 @@ export function getImgList(params) {
 export function getBackLogList(params) {
   return get('/api/backLogList', params)
 }
+//资源管理列表
+export function getResList(params) {
+  return get('/api/resList', params)
+}
+//资源图片
+export function getResImgList(params) {
+  return get('/api/resImgList', params)
+}

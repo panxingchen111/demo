@@ -47,6 +47,7 @@
         style="width: 100%"
         @selection-change="handleSelectionChange"
         row-key="id"
+        max-height="450"
       >
         <el-table-column type="selection" width="55"> </el-table-column>
         <el-table-column label="编号" prop="id"> </el-table-column>

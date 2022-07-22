@@ -33,10 +33,8 @@ export default {
     if (obj.id) {
       arr.push(list.find(p => p.id == obj.id))
       // list = arr
-      console.log('obj.id', arr)
     } else {
       arr = list.slice((pageIndex - 1) * pageSize, pageIndex * pageSize)
-      console.log('else', arr)
     }
     return {
       code: 200,
@@ -240,6 +238,67 @@ export default {
       code: 200,
       data: {
         list: arr
+      }
+    }
+  },
+  getResList: (data) => {
+    let list = []
+    let obj = getParameters(data.url);
+    let arr = []
+    for (let i = 0; i < 100; i++) {
+      list.push(
+        Mock.mock({
+          id: Mock.Random.integer(1, 100),
+          address: Mock.Random.region(),
+          email: Mock.Random.email(),
+          name: Mock.Random.last(),
+          createTime: Mock.Random.now('yyyy-MM-dd HH:mm:ss SS')
+        })
+      );
+    }
+    const pageSize = parseInt(obj.pageSize)
+    const pageIndex = parseInt(obj.pageIndex)
+    if (obj.name) {
+      console.log('----', obj.name)
+      arr.push(list.find(p => p.name === obj.name))
+    } else {
+      arr = list.slice((pageIndex - 1) * pageSize, pageIndex * pageSize)
+    }
+    return {
+      code: 200,
+      data: {
+        list: arr,
+        total: list.length,
+        pageIndex: pageIndex
+      }
+    }
+  },
+  getResImgList: (data) => {
+    let arr = []
+    let list = []
+    let obj = getParameters(data.url);
+    const pageSize = parseInt(obj.pageSize)
+    const pageIndex = parseInt(obj.pageIndex)
+    for (let i = 0; i < 200; i++) {
+      const a = '#' + Mock.Random.integer(180, 255).toString(16) +
+        Mock.Random.integer(140, 255).toString(16) +
+        Mock.Random.integer(120, 220).toString(16)
+      const b = Mock.Random.csentence(5)
+      list.push(
+        Mock.mock({
+          id: Mock.Random.integer(1, 100),
+          createTime: Mock.Random.now('yyyy-MM-dd HH:mm:ss SS'),
+          url: Mock.Random.image('400x360', a, b),
+        })
+      );
+    }
+    arr = list.slice((pageIndex - 1) * pageSize, pageIndex * pageSize)
+    return {
+      code: 200,
+      data: {
+        list: arr,
+        total: list.length,
+        pageIndex: pageIndex
       }
     }
   }
