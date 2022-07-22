@@ -60,7 +60,7 @@
         <el-table-column label="ES6" prop="ES6"> </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-tooltip content="编辑" placement="top"    v-if="$checkRights(['test-data:list:del'])">
+            <el-tooltip content="编辑" placement="top">
               <el-button
                 type="primary"
                 icon="el-icon-edit"
@@ -69,7 +69,11 @@
                 @click="handler(scope.row, 1)"
               ></el-button>
             </el-tooltip>
-            <el-tooltip content="删除" placement="top">
+            <el-tooltip
+              content="删除"
+              placement="top"
+              v-if="$checkRights(['test-data:list:del'])"
+            >
               <el-button
                 type="danger"
                 icon="el-icon-delete"

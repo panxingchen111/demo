@@ -71,7 +71,11 @@
               v-if="$checkRights(['data-manage:list:del'])"
               >删除</el-button
             >
-            <el-button type="text" size="small" @click="edit(scope.row)"
+            <el-button
+              type="text"
+              size="small"
+              @click="edit(scope.row)"
+              v-if="$checkRights(['data-manage:list:edit'])"
               >编辑</el-button
             >
           </template>
