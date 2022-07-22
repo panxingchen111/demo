@@ -48,7 +48,6 @@ export default {
     };
   },
   getTestChartsInfo: (data) => {
-    console.log(777777, data)
     const pageViewlist = [{
       name: '一月',
       value: 200
@@ -163,6 +162,84 @@ export default {
             url: 'https://img2.baidu.com/it/u=3328039940,1634058035&fm=253&fmt=auto&app=120&f=JPEG?w=1422&h=800'
           }
         ]
+      }
+    }
+  },
+  getBackLogList: (data) => {
+    let list = [{
+        title: '任务1',
+        id: 1,
+        status: 0,
+        roleId: 1
+      }, {
+        title: '任务2',
+        id: 2,
+        status: 1,
+        roleId: 1
+      }, {
+        title: 'bug1',
+        id: 3,
+        status: 1,
+        roleId: 1
+      }, {
+        title: 'bug2',
+        id: 4,
+        status: 0,
+        roleId: 1
+      }, {
+        title: '任务3',
+        id: 5,
+        status: 1
+      }, {
+        title: '任务4',
+        id: 6,
+        status: 1,
+        roleId: 2
+      }, {
+        title: 'bug3',
+        id: 7,
+        status: 0,
+        roleId: 2
+      }, {
+        title: '任务5',
+        id: 8,
+        status: 0,
+        roleId: 2
+      }, {
+        title: 'bug4',
+        id: 9,
+        status: 0,
+        roleId: 2
+      }, {
+        title: '任务6',
+        id: 10,
+        status: 0,
+        roleId: 1
+      },
+      {
+        title: '任务7',
+        id: 11,
+        status: 0,
+        roleId: 1
+      },
+      {
+        title: 'bug5',
+        id: 12,
+        status: 0,
+        roleId: 1
+      },
+    ]
+    let arr = []
+    let obj = getParameters(data.url);
+    if (obj.roleId) {
+      arr = list.filter(item => {
+        return item.roleId == obj.roleId
+      })
+    }
+    return {
+      code: 200,
+      data: {
+        list: arr
       }
     }
   }

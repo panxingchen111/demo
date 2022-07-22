@@ -5,7 +5,7 @@
     justify-content: end;"
     >
       <h3 style="margin-right:10px">{{ env.VUE_APP_TITLE }}</h3>
-      <div>
+      <div v-if="$store.state.userInfo">
         <el-avatar
           :src="$store.state.userInfo.avatar"
           style="margin-top:10px"

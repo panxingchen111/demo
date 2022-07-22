@@ -4,7 +4,7 @@
       <el-col :span="16">
         <el-card shadow="hover">
           <div class="main">
-            <div id="main" style="width: 100%; height: 500px"></div>
+            <div id="main" style="width: 100%; height: 550px"></div>
           </div>
         </el-card>
       </el-col>
@@ -25,13 +25,60 @@
         </el-card>
         <el-card shadow="hover" class="info">
           <div class="info-item">
-            <span>上次登录地点：</span>
+            <span>本次登录地点：</span>
             <span>{{ address }}</span>
           </div>
           <el-divider></el-divider>
           <div class="info-item">
-            <span>上次登录时间：</span> <span>{{ time }}</span>
+            <span>本次登录时间：</span> <span>{{ time }}</span>
           </div>
+        </el-card>
+        <el-card shadow="hover" class="info">
+          <div
+            slot="header"
+            style="display: flex;justify-content: space-between;"
+          >
+            <span>近期事项</span>
+            <el-button
+              style="float: right; padding: 3px 0"
+              type="text"
+              @click="view"
+              >查看更多...</el-button
+            >
+          </div>
+          <el-table
+            :data="backLogList.slice(0, 5)"
+            style="width: 100%"
+            :show-header="false"
+          >
+            <el-table-column fixed prop="title" label="">
+              <template slot-scope="scope">
+                <span
+                  :class="scope.row.status === 1 ? 'isStatus' : 'noStatus'"
+                  >{{ scope.row.title }}</span
+                >
+              </template>
+            </el-table-column>
+            <el-table-column fixed="right" label="" width="120" align="right">
+              <template slot-scope="scope">
+                <el-button
+                  icon="el-icon-edit"
+                  circle
+                  @click="edit(scope.row)"
+                  size="mini"
+                >
+                </el-button>
+                <el-button
+                  icon="el-icon-delete"
+                  circle
+                  @click="del(scope.row)"
+                  :disabled="scope.row.status === 1"
+                  size="mini"
+                >
+                </el-button>
+              </template>
+            </el-table-column>
+          </el-table>
         </el-card>
       </el-col>
     </el-row>
@@ -50,16 +97,19 @@
 <script>
 import * as echarts from "echarts";
 import "@/utils/china.js";
-
+import { getBackLogList } from "../api/test-service";
 export default {
   data() {
     return {
       list: [],
       address: "",
-      time: ""
+      time: "",
+      backLogList: []
     };
   },
-  created() {},
+  created() {
+    this.getLog();
+  },
   mounted() {
     window.addEventListener("message", this.getIp);
     this.time = this.dayjs(this.$store.getters.getTime).format(
@@ -181,11 +231,27 @@ export default {
       //     options.series[0].data = data;
       myChart.setOption(options);
       myChart.on("click", function(param) {
-        console.log(1111111111, param);
       });
       //   });
       // });
-    }
+    },
+    async getLog() {
+      let res = await getBackLogList({
+        roleId: this.$store.state.userInfo.id,
+        time: new Date().valueOf()
+      });
+      if (res) {
+        this.backLogList = res.data.list;
+      }
+    },
+    view() {
+      this.$message({
+        type: "info",
+        message: "正在拼命开发中..."
+      });
+    },
+    edit(row) {},
+    del(row) {}
   }
 };
 </script>
@@ -205,5 +271,12 @@ export default {
 }
 .el-divider--horizontal {
   margin: 10px 0;
+}
+.isStatus {
+  text-decoration: line-through;
+  color: gray;
+}
+.noStatus {
+  color: gray;
 }
 </style>
