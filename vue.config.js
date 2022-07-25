@@ -1,7 +1,7 @@
 const resolve = dir => require("path").join(__dirname, dir);
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const env = process.env.NODE_ENV;
-const publicPath = env === "production" ? "/" : "/";
+// const publicPath = env === "production" ? "/" : "/";
 
 // 引入等比适配插件
 // const px2rem = require('postcss-px2rem')
@@ -35,7 +35,7 @@ module.exports = {
     },
   },
   transpileDependencies: ["vuetify"],
-  publicPath: publicPath,
+  publicPath: './',
   productionSourceMap: false,
   configureWebpack: config => {
     if (env === "development") {

@@ -135,7 +135,6 @@ export default {
           }
           userInfo[loginid].token =
             userInfo[loginid].token + new Date().valueOf();
-          console.log(888888888, new Date().valueOf());
           this.$cookie.set("userInfoToken", userInfo[loginid].token, {
             // expires: new Date(new Date().getTime() + 60 * 1000 * 1),//精确到分钟
             expires: 1 //1天
