@@ -129,7 +129,7 @@ export default {
           selected: true
         };
         this.list[0] = obj;
-        this.address = e.data.nation + e.data.province;
+        this.address = e.data.nation + "-" + e.data.province;
         this.init();
       }
     },
@@ -230,8 +230,7 @@ export default {
 
       //     options.series[0].data = data;
       myChart.setOption(options);
-      myChart.on("click", function(param) {
-      });
+      myChart.on("click", function(param) {});
       //   });
       // });
     },
