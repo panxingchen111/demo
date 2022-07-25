@@ -1,3 +1,10 @@
+// 部署到github上，page是指定的分支
+// npm run build
+// git checkout -b page
+// git add -f dist
+// git commit -m 'first commit'
+// git subtree push --prefix dist origin page
+
 const resolve = dir => require("path").join(__dirname, dir);
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const env = process.env.NODE_ENV;
