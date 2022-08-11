@@ -24,6 +24,7 @@
           <!-- 秒杀商品组件 -->
           <SecondsKillGoods
             v-else-if="item.id == 'secondsKillGoods'"
+            :obj="item"
           ></SecondsKillGoods>
           <!-- 秒杀商品组件 -->
           <!-- 全部商品 -->

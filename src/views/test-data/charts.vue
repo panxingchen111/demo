@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="home" class="home">
     <div class="card-group">
       <el-card class="card-group-item" shadow="hover">
         <el-row>
@@ -49,7 +49,18 @@
     <el-card shadow="always" class="card-header-2">
       <el-row class="row-set">
         <el-col :span="12" class="card-header-1">
-          <h3>访问量</h3>
+          <h3>
+            访问量<span @click="download" style="margin-left:10px">
+              <el-tooltip
+                class="item"
+                effect="light"
+                content="导出pdf"
+                placement="top"
+              >
+                <i class="el-icon-document"></i
+              ></el-tooltip>
+            </span>
+          </h3>
         </el-col>
         <el-col :span="12" class="col-right">
           <el-date-picker
@@ -90,6 +101,7 @@ import * as echarts from "echarts";
 require("echarts/theme/macarons"); //引入主题
 require("echarts/lib/component/legend");
 import { getChartsInfo } from "../../api/test-service";
+import pdf from "../../utils/htmlToPdf";
 export default {
   data() {
     return {
@@ -116,13 +128,11 @@ export default {
     // this.load();
   },
   mounted() {
-    console.log(this.date);
     this.initChart();
   },
   methods: {
     load() {},
     selectDate(val) {
-      console.log(88888888, val);
       this.date = val;
       this.initChart();
     },
@@ -174,6 +184,10 @@ export default {
           });
         })
         .catch(e => {});
+    },
+    download() {
+      console.log(111);
+      pdf.downloadPDF(document.querySelector(".home"), "访问量");
     }
   }
 };
