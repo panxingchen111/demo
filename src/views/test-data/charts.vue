@@ -186,7 +186,6 @@ export default {
         .catch(e => {});
     },
     download() {
-      console.log(111);
       pdf.downloadPDF(document.querySelector(".home"), "访问量");
     }
   }

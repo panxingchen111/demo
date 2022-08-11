@@ -36,11 +36,19 @@ function downloadPDF(ele, pdfName) {
 
   // html2canvas(element).then( (canvas)=>{ //报错
   // html2canvas(element[0]).then( (canvas)=>{
+  //导出前给dom添加padding,不然dom会紧贴着画布
+  document.querySelectorAll('.home').forEach((i) => {
+    i.style.padding = '20px'
+  })
   html2canvas(ele, {
     dpi: 300,
     // allowTaint: true,  //允许 canvas 污染， allowTaint参数要去掉，否则是无法通过toDataURL导出canvas数据的
     useCORS: true //允许canvas画布内 可以跨域请求外部链接图片, 允许跨域请求。
   }).then((canvas) => {
+    //导出之后把padding去掉
+    document.querySelectorAll('.home').forEach((i) => {
+      i.style.padding = '0'
+    })
     var contentWidth = canvas.width;
     var contentHeight = canvas.height;
     //一页pdf显示html页面生成的canvas高度;
