@@ -61,7 +61,10 @@ export default {
   components: { imgCode },
   data() {
     return {
-      obj: {},
+      obj: {
+        account: 'admin1',
+        password: '1234qwer'
+      },
       rules: {
         account: [
           {

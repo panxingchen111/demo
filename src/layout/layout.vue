@@ -1,25 +1,28 @@
 <template>
   <el-container>
-    <el-aside
-      :width="value ? '200' + 'px' : '60' + 'px'"
-      style="position: relative"
-    >
-      <div style="left: 25px; position: absolute; top: 20px">
-        <el-switch v-model="value" :width="35"> </el-switch>
+    <el-aside :width="value ? '200' + 'px' : '60' + 'px'">
+      <div
+        style="font-size:24px;margin-bottom:13px;text-align: right;margin-right: 5px;"
+      >
+        <i
+          :class="value ? 'el-icon-s-fold' : 'el-icon-s-unfold'"
+          @click="changeValue"
+        ></i>
       </div>
       <aside1 :value="value" />
     </el-aside>
     <el-container>
-      <el-header
-        ><header1/>
-        <bread-crumb
-          :class="value ? 'isValue' : 'noValue'"
-          class="tagList"
-        ></bread-crumb>
+      <el-header>
+        <el-header
+          ><header1 :value="value" />
+          <bread-crumb
+            :class="value ? 'isValue' : 'noValue'"
+            class="tagList"
+          ></bread-crumb>
+        </el-header>
       </el-header>
-      <el-main :class="value ? 'isValue' : 'noValue'">
-        <router-view />
-      </el-main>
+      <el-main :class="value ? 'isValue' : 'noValue'"> <router-view /></el-main>
+      <!-- <el-footer>Footer</el-footer> -->
     </el-container>
   </el-container>
 </template>
@@ -35,7 +38,11 @@ export default {
       screenWidth: "100%"
     };
   },
-  methods: {}
+  methods: {
+    changeValue() {
+      this.value = !this.value;
+    }
+  }
 };
 </script>
 <style lang="less" scoped>
@@ -59,13 +66,13 @@ export default {
 .el-header .el-menu {
   border-bottom: none;
 }
-.el-aside,
 .el-main {
   padding-top: 60px;
 }
 .el-aside {
   background-color: #d3dce6;
   z-index: 999999;
+  padding-top: 20px;
 }
 .el-aside .el-menu {
   border-right: none;

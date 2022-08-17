@@ -1,35 +1,50 @@
 <template>
   <div class="header">
-    <div
-      style="display: inline-flex;
-    justify-content: end;"
-    >
-      <h3 style="margin-right:10px">{{ env.VUE_APP_TITLE }}</h3>
-      <div v-if="$store.state.userInfo">
-        <el-avatar
-          :src="$store.state.userInfo.avatar"
-          style="margin-top:10px"
-        ></el-avatar>
-        <el-dropdown>
-          <span class="el-dropdown-link">
-            <i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item @click.native="logoOut">注销</el-dropdown-item>
-            <el-dropdown-item @click.native="forgetPwd"
-              >忘记密码</el-dropdown-item
-            >
-          </el-dropdown-menu>
-        </el-dropdown>
-      </div>
-    </div>
+    <el-row>
+      <el-col :span="12">
+        <h3
+          :style="{
+            'text-align': 'left',
+            'margin-left': value ? '250px' : '120px'
+          }"
+        >
+          {{ env.VUE_APP_TITLE }}
+        </h3>
+      </el-col>
+      <el-col :span="12" v-if="$store.state.userInfo">
+        <div style="display: flex;justify-content: end;">
+          <i
+            class="el-icon-full-screen"
+            style="margin-right:10px;margin-top:24px"
+            @click="full"
+          ></i>
+          <el-avatar
+            :src="$store.state.userInfo.avatar"
+            style="margin-top:10px"
+          ></el-avatar>
+          <el-dropdown>
+            <span class="el-dropdown-link">
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item @click.native="logoOut">注销</el-dropdown-item>
+              <el-dropdown-item @click.native="forgetPwd"
+                >忘记密码</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 <script>
 export default {
+  props: ["value"],
   data() {
     return {
-      env: process.env
+      env: process.env,
+      isScreenFull: false
     };
   },
   methods: {
@@ -51,7 +66,16 @@ export default {
           });
         });
     },
-    forgetPwd() {}
+    forgetPwd() {},
+    full() {
+      // 如果未开启就开启 如果已开启就关闭
+      if (this.isScreenFull) {
+        document.exitFullscreen(); // 关闭全屏
+      } else {
+        document.documentElement.requestFullscreen(); //开启全屏
+      }
+      this.isScreenFull = !this.isScreenFull;
+    }
   }
 };
 </script>
