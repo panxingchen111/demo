@@ -3,7 +3,7 @@ const userInfo = {
     name: 1,
     id: 1,
     token: 'Bearer abcdefghijklmnopq',
-    avatar: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
+    avatar: 'https://img1.baidu.com/it/u=1706751365,3645392677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
     menuList: [{
         name: "首页",
         path: "/",
@@ -59,7 +59,7 @@ const userInfo = {
     name: 2,
     id: 2,
     token: 'Bearer abcdefghijklmn',
-    avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+    avatar: 'https://img1.baidu.com/it/u=1706751365,3645392677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
     menuList: [{
         name: "首页",
         path: "/",

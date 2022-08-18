@@ -20,7 +20,8 @@
           ></i>
           <el-avatar
             :src="$store.state.userInfo.avatar"
-            style="margin-top:10px"
+            style="margin-top:15px"
+            size="small"
           ></el-avatar>
           <el-dropdown>
             <span class="el-dropdown-link">
