@@ -87,6 +87,15 @@ const constantRoutes = [{
           title: 'charts'
         }
       },
+      {
+        path: 'x6',
+        name: '测试x6',
+        component: () => import('@/views/test-data/page'),
+        meta: {
+          needLogin: true,
+          title: 'page'
+        }
+      },
     ]
   },
   {

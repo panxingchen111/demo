@@ -30,6 +30,11 @@ const userInfo = {
             name: "测试数据-图表",
             path: "/test-data/charts",
             show: true,
+          },
+          {
+            name: "测试x6",
+            path: "/test-data/x6",
+            show: true,
           }
         ]
       },

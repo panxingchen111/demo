@@ -16,6 +16,8 @@ import dayjs from "dayjs"
 import checkRights from "./utils/checkRights";
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css' // nprogress样式文件
+import Contextmenu from "vue-contextmenujs"
+
 process.env.VUE_APP_MOCK === 'true' && require('./mock/index');
 // 挂载到Vue实力上，全局可通过this.$store进行调用
 Vue.use(ElementUI);
@@ -26,6 +28,7 @@ Vue.prototype.$cookie = jsCookie;
 Vue.prototype.dayjs = dayjs; //可以全局使用dayjs
 Vue.prototype.$checkRights = checkRights;
 Vue.use(Viewer);
+Vue.use(Contextmenu);
 Viewer.setDefaults({
   Options: {
     "inline": true,
