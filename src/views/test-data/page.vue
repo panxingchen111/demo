@@ -16,6 +16,14 @@
           >{{ item.name }}</el-button
         >
       </div>
+      <div
+        v-for="item in list"
+        :key="item.id"
+        draggable="true"
+        @dragend="handleDragEnd($event, item)"
+      >
+        <el-tag>{{ item.name }}</el-tag>
+      </div>
       <el-button @click="graphSave">保存</el-button>
     </div>
     <el-divider></el-divider>
@@ -58,12 +66,129 @@ export default {
           type: "btn",
         },
       ],
+      list: [
+        {
+          id: 3,
+          name: "第一题",
+          questionType: 1,
+          child: [
+            { id: "aaaaaaa", name: "1" },
+            { id: "bbbbbbb", name: "2" },
+          ],
+        },
+        {
+          id: 4,
+          name: "第二题",
+          questionType: 2,
+          child: [
+            { id: "cc", name: "3" },
+            { id: "dd", name: "4" },
+            { id: "ff", name: "5" },
+          ],
+        },
+        {
+          id: 5,
+          name: "第三题",
+          questionType: 2,
+          child: [
+            { id: "gg", name: "6" },
+            { id: "hh", name: "7" },
+            { id: "ii", name: "8" },
+          ],
+        },
+        // {
+        //   id: 4,
+        //   name: "3",
+        // },
+        // {
+        //   id: 5,
+        //   name: "测试",
+        // },
+        // {
+        //   id: 6,
+        //   name: "是",
+        // },
+        // {
+        //   id: 7,
+        //   name: "否",
+        // },
+        // {
+        //   id: "2222222",
+        //   shape: "edge",
+        //   source: { cell: 1, port: "port4" },
+        //   target: { cell: 2, port: "port3" },
+        // },
+        // {
+        //   id: "888888",
+        //   shape: "edge",
+        //   source: { cell: 1, port: "port4" },
+        //   target: { cell: 3, port: "port3" },
+        // },
+        // {
+        //   id: "123213131",
+        //   shape: "edge",
+        //   source: { cell: 1, port: "port4" },
+        //   target: { cell: 4, port: "port3" },
+        // },
+        // {
+        //   id: "1232131314444",
+        //   shape: "edge",
+        //   source: { cell: 2, port: "port4" },
+        //   target: { cell: 5, port: "port3" },
+        // },
+        // {
+        //   id: "123213131555555555555555",
+        //   shape: "edge",
+        //   source: { cell: 5, port: "port4" },
+        //   target: { cell: 6, port: "port3" },
+        // },
+        // {
+        //   id: "1232131310999",
+        //   shape: "edge",
+        //   source: { cell: 5, port: "port4" },
+        //   target: { cell: 7, port: "port3" },
+        // },
+      ],
     };
   },
   mounted() {
     this.initGraph();
+    // this.getList();
   },
   methods: {
+    getList() {
+      const edgeList = this.list.filter((x) => {
+        return x.shape === "edge";
+      });
+      // console.log(116, edgeList);
+      edgeList.forEach((i) => {
+        // console.log(i);
+        i.targetCell = i.source.cell;
+      });
+      const arr = [];
+      const groupedItems = this.groupBy(edgeList, "targetCell");
+      for (const key in groupedItems) {
+        arr.push(key);
+      }
+      console.log(148, arr);
+      arr.forEach((x) => {
+        console.log(150, groupedItems[x]);
+      });
+      // console.log(999999, edgeList, groupedItems);
+    },
+    groupBy(array, key) {
+      return array.reduce((result, currentItem) => {
+        // 使用对象属性值作为键来分组
+        const groupKey = currentItem[key];
+        // 如果这个组还不存在，则创建它
+        if (!result[groupKey]) {
+          result[groupKey] = [];
+        }
+        // 将当前项添加到对应的组
+        result[groupKey].push(currentItem);
+        return result;
+      }, {});
+    },
     initGraph() {
       const container = document.getElementById("container");
       this.graph = new Graph({
@@ -76,8 +201,8 @@ export default {
         connecting: {
           snap: true, // 自动吸附
           allowBlank: false, // 是否允许连接到画布空白位置的点
-          allowMulti: true, // 是否允许在相同的起始节点和终止之间创建多条边
-          allowLoop: true, // 是否允许创建循环连线，即边的起始节点和终止节点为同一节点
+          allowMulti: false, // 是否允许在相同的起始节点和终止之间创建多条边
+          allowLoop: false, // 是否允许创建循环连线，即边的起始节点和终止节点为同一节点
           highlight: true, // 拖动边时，是否高亮显示所有可用的节点
           highlighting: {
             magnetAdsorbed: {
@@ -168,6 +293,7 @@ export default {
           clean: false, // 如果为 true，则在 3s 后清除对齐线，为 false，不会清除，如果为数字(ms)，则在指定时间后清除对齐线
         })
       );
+
       // 双击节点
       // this.graph.on("cell:dblclick", ({ e, x, y, cell, view }) => {
       //   this.$emit(dbclickAlert,true)
@@ -306,6 +432,15 @@ export default {
               }
             },
           },
+          {
+            label: "编辑",
+            disabled: cells.length === 0 ? true : false,
+            onClick: () => {
+              if (cells.length) {
+                this.edit(cells);
+              }
+            },
+          },
         ],
         event, // 鼠标事件信息
         customClass: "custom-class", // 自定义菜单 class
@@ -313,6 +448,11 @@ export default {
         minWidth: 150, // 主菜单最小宽度
       });
       return false;
+    },
+    edit(cells) {
+      let text = cells[0].id == 1 ? "start" : "end";
+      cells[0].attr("label/text", text);
+      this.graph.resize();
     },
     // 撤销
     undo() {
@@ -331,10 +471,48 @@ export default {
         new Date().getTime(),
         item
       );
+      if (item.child) {
+        const arr = item.child;
+        arr.forEach((x, index) => {
+          this.$set(x, "parent", item.id); //子节点添加父节点的id
+          this.$set(x, "questionType", item.questionType); //子节点添加父节点选项类型
+          this.$set(
+            x,
+            "onePorts",
+            item.questionType === 2 && index === 0 ? true : false
+          );
+          this.addHandleNode(
+            e.pageX - 200,
+            e.pageY - 100 - index * 50,
+            new Date().getTime(),
+            x
+          ); //生成子节点
+        });
+      }
     },
     //添加节点到画布
     addHandleNode(x, y, id, item) {
       console.log(312313, x, y, id, item);
+      let portsItem = item.onePorts
+        ? [
+            {
+              group: "group4",
+              id: "port4",
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: "#ffffff",
+                  strokeWidth: 1,
+                  fill: "#5F95FF",
+                  style: {
+                    visibility: "hidden",
+                  },
+                },
+              },
+            },
+          ]
+        : [];
       this.graph.addNode({
         id: item.id,
         shape: "rect", // 指定使用何种图形，默认值为 'rect'
@@ -351,19 +529,19 @@ export default {
             rx: 6,
             ry: 6,
           },
-          text: {
-            text: item.name,
-            fill: item.color, // 文字颜色
-          },
-          // label: {
+          // text: {
           //   text: item.name,
-          //   fill: item.color,
-          //   textWrap: {
-          //     width: 100,
-          //     height: 40,
-          //     ellipsis: true,
-          //   },
+          //   fill: item.color, // 文字颜色
           // },
+          label: {
+            text: item.name,
+            fill: item.color,
+            textWrap: {
+              width: 100,
+              height: 40,
+              ellipsis: true,
+            },
+          },
         },
         ports: {
           groups: {
@@ -388,72 +566,76 @@ export default {
               },
             },
           },
-          items: [
-            {
-              group: "group1",
-              id: "port1",
-              attrs: {
-                circle: {
-                  r: 4,
-                  magnet: true,
-                  stroke: "#ffffff",
-                  strokeWidth: 1,
-                  fill: "#5F95FF",
-                  style: {
-                    visibility: "hidden",
+          // items:
+          items:
+            !item.parent || item.questionType === 1
+              ? [
+                  {
+                    group: "group1",
+                    id: "port1",
+                    attrs: {
+                      circle: {
+                        r: 4,
+                        magnet: true,
+                        stroke: "#ffffff",
+                        strokeWidth: 1,
+                        fill: "#5F95FF",
+                        style: {
+                          visibility: "hidden",
+                        },
+                      },
+                    },
                   },
-                },
-              },
-            },
-            {
-              group: "group2",
-              id: "port2",
-              attrs: {
-                circle: {
-                  r: 4,
-                  magnet: true,
-                  stroke: "#ffffff",
-                  strokeWidth: 1,
-                  fill: "#5F95FF",
-                  style: {
-                    visibility: "hidden",
+                  {
+                    group: "group2",
+                    id: "port2",
+                    attrs: {
+                      circle: {
+                        r: 4,
+                        magnet: true,
+                        stroke: "#ffffff",
+                        strokeWidth: 1,
+                        fill: "#5F95FF",
+                        style: {
+                          visibility: "hidden",
+                        },
+                      },
+                    },
                   },
-                },
-              },
-            },
-            {
-              group: "group3",
-              id: "port3",
-              attrs: {
-                circle: {
-                  r: 4,
-                  magnet: true,
-                  stroke: "#ffffff",
-                  strokeWidth: 1,
-                  fill: "#5F95FF",
-                  style: {
-                    visibility: "hidden",
+                  {
+                    group: "group3",
+                    id: "port3",
+                    attrs: {
+                      circle: {
+                        r: 4,
+                        magnet: true,
+                        stroke: "#ffffff",
+                        strokeWidth: 1,
+                        fill: "#5F95FF",
+                        style: {
+                          visibility: "hidden",
+                        },
+                      },
+                    },
                   },
-                },
-              },
-            },
-            {
-              group: "group4",
-              id: "port4",
-              attrs: {
-                circle: {
-                  r: 4,
-                  magnet: true,
-                  stroke: "#ffffff",
-                  strokeWidth: 1,
-                  fill: "#5F95FF",
-                  style: {
-                    visibility: "hidden",
+                  {
+                    group: "group4",
+                    id: "port4",
+                    attrs: {
+                      circle: {
+                        r: 4,
+                        magnet: true,
+                        stroke: "#ffffff",
+                        strokeWidth: 1,
+                        fill: "#5F95FF",
+                        style: {
+                          visibility: "hidden",
+                        },
+                      },
+                    },
                   },
-                },
-              },
-            },
-          ],
+                ]
+              : portsItem,
         },
         zIndex: 10,
         parent: item.parent ? item.parent : null, // 设置父节点ID
@@ -477,6 +659,7 @@ export default {
         console.log("右键", cell, e, x, y, node, view);
         e.preventDefault();
       });
+
       if (item.parent) {
         // 动态添加边线，连接到刚刚创建的节点
         this.graph.addEdge({
