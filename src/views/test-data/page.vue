@@ -369,6 +369,30 @@ export default {
         }
         return false;
       });
+      // 自定义连线规则
+      this.graph.on("edge:connected", (args) => {
+        const sourceNode = args.edge.getSourceNode();
+        const parentNode = sourceNode.getParent();
+        let list = parentNode.children;
+        list.sort((a, b) => {
+          let val1 =
+            this.graph.getConnectedEdges(a.target.cell, {
+              outgoing: true, //找节点的输出边
+            })[0] || {};
+          let val2 =
+            this.graph.getConnectedEdges(b.target.cell, {
+              outgoing: true, //找节点的输出边
+            })[0] || {};
+          if (val1.target && val2.target) {
+            if (
+              val1.target.cell != val2.target.cell &&
+              parentNode.data.questionType === 2
+            ) {
+              this.graph.removeEdge(args.edge); // 移除边
+            }
+          }
+        });
+      });
     },
     // 右击菜单事件
     onContextmenu(event) {
@@ -493,26 +517,6 @@ export default {
     //添加节点到画布
     addHandleNode(x, y, id, item) {
       console.log(312313, x, y, id, item);
-      let portsItem = item.onePorts
-        ? [
-            {
-              group: "group4",
-              id: "port4",
-              attrs: {
-                circle: {
-                  r: 4,
-                  magnet: true,
-                  stroke: "#ffffff",
-                  strokeWidth: 1,
-                  fill: "#5F95FF",
-                  style: {
-                    visibility: "hidden",
-                  },
-                },
-              },
-            },
-          ]
-        : [];
       this.graph.addNode({
         id: item.id,
         shape: "rect", // 指定使用何种图形，默认值为 'rect'
@@ -521,6 +525,9 @@ export default {
         width: item.type === "option" ? 220 : 100,
         height: 40,
         // imageUrl: image,
+        data: {
+          questionType: item.questionType,
+        },
         attrs: {
           body: {
             stroke: item.type === "btn" ? "white" : "black", //边框色
@@ -567,81 +574,78 @@ export default {
             },
           },
           // items:
-          items:
-            !item.parent || item.questionType === 1
-              ? [
-                  {
-                    group: "group1",
-                    id: "port1",
-                    attrs: {
-                      circle: {
-                        r: 4,
-                        magnet: true,
-                        stroke: "#ffffff",
-                        strokeWidth: 1,
-                        fill: "#5F95FF",
-                        style: {
-                          visibility: "hidden",
-                        },
-                      },
-                    },
+          items: [
+            {
+              group: "group1",
+              id: "port1",
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: "#ffffff",
+                  strokeWidth: 1,
+                  fill: "#5F95FF",
+                  style: {
+                    visibility: "hidden",
                   },
-                  {
-                    group: "group2",
-                    id: "port2",
-                    attrs: {
-                      circle: {
-                        r: 4,
-                        magnet: true,
-                        stroke: "#ffffff",
-                        strokeWidth: 1,
-                        fill: "#5F95FF",
-                        style: {
-                          visibility: "hidden",
-                        },
-                      },
-                    },
+                },
+              },
+            },
+            {
+              group: "group2",
+              id: "port2",
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: "#ffffff",
+                  strokeWidth: 1,
+                  fill: "#5F95FF",
+                  style: {
+                    visibility: "hidden",
                   },
-                  {
-                    group: "group3",
-                    id: "port3",
-                    attrs: {
-                      circle: {
-                        r: 4,
-                        magnet: true,
-                        stroke: "#ffffff",
-                        strokeWidth: 1,
-                        fill: "#5F95FF",
-                        style: {
-                          visibility: "hidden",
-                        },
-                      },
-                    },
+                },
+              },
+            },
+            {
+              group: "group3",
+              id: "port3",
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: "#ffffff",
+                  strokeWidth: 1,
+                  fill: "#5F95FF",
+                  style: {
+                    visibility: "hidden",
                   },
-                  {
-                    group: "group4",
-                    id: "port4",
-                    attrs: {
-                      circle: {
-                        r: 4,
-                        magnet: true,
-                        stroke: "#ffffff",
-                        strokeWidth: 1,
-                        fill: "#5F95FF",
-                        style: {
-                          visibility: "hidden",
-                        },
-                      },
-                    },
+                },
+              },
+            },
+            {
+              group: "group4",
+              id: "port4",
+              attrs: {
+                circle: {
+                  r: 4,
+                  magnet: true,
+                  stroke: "#ffffff",
+                  strokeWidth: 1,
+                  fill: "#5F95FF",
+                  style: {
+                    visibility: "hidden",
                   },
-                ]
-              : portsItem,
+                },
+              },
+            },
+          ],
         },
         zIndex: 10,
         parent: item.parent ? item.parent : null, // 设置父节点ID
       });
       this.graph.on("node:mouseenter", ({ e, node, view }) => {
-        console.log(9999, e, view);
+        // console.log(9999, e, view);
         node.addTools({
           name: "button-remove",
           args: {
@@ -652,7 +656,7 @@ export default {
         });
       });
       this.graph.on("node:mouseleave", ({ e, node, view }) => {
-        console.log(9999, e, view);
+        // console.log(9999, e, view);
         node.removeTools();
       });
       this.graph.on("node:contextmenu", ({ cell, e, x, y, node, view }) => {
